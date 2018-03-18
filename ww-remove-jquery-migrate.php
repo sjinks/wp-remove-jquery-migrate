@@ -8,7 +8,7 @@
  * License: MIT
  */
 
-defined('ASBPATH') || die();
+defined('ABSPATH') || die();
 
 /*
  * Add
@@ -19,7 +19,7 @@ defined('ASBPATH') || die();
  */
 defined('WWRJQM_MOVE_JQUERY_TO_FOOTER') or define('WWRJQM_MOVE_JQUERY_TO_FOOTER', false);
 
-!is_admin() && add_filter('wp_default_scripts', function(&$scripts) {
+is_admin() || add_action('wp_default_scripts', function(&$scripts) {
 	$data = $scripts->query('jquery');
 	if (is_object($data)) {
 		$data->deps = array_diff($data->deps, array('jquery-migrate'));
